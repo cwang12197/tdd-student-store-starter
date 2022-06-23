@@ -1,0 +1,19 @@
+.navbar .links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    list-style-type: none;
+    margin-left: auto;
+    flex: 1;
+}
+.navbar {
+    background-color:red;
+    display: flex;
+    justify-content: row;
+    align-items: center;
+}
+
+.links {
+    scroll-behavior: auto;
+}
