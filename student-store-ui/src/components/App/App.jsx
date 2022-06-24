@@ -11,6 +11,8 @@ import ProductDetail from "../ProductDetail/ProductDetail"
 import NotFound from "../NotFound/NotFound"
 import Hero from "../Hero/Hero"
 import SearchBar from "../SearchBar/SearchBar"
+import About from "../About/About";
+
 /* const {data} = await axios(URL), data.products = the array of objects where URL equals the information then console.log(data) */
 
 export default function App() {
@@ -130,11 +132,11 @@ export default function App() {
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </div>
-                
+                <About></About>
               </div>
             </div>
           </main>
-        
+
         </BrowserRouter>
       </div>
     )
