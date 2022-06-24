@@ -19,11 +19,11 @@ export default function App() {
   const URL = 'https://codepath-store-api.herokuapp.com/store'
 
 
-  function handleOnToggle(isOpen) {
+  function handleOnToggle() {
     setIsOpen(!isOpen)
   } //can also pass in value that is the previous value because then it will be a function otherwise
   //when doing onclick it will call the function where its already a function so needs a () => to become a function definition for ()
-
+  
   function handleAddItemToCart(productId) {
     let checkExist = false;
 
@@ -84,7 +84,7 @@ export default function App() {
             <div className="container">
               <Sidebar
                 isOpen={isOpen}
-                //shoppingCart={shoppingCart}
+                shoppingCart={shoppingCart}
                 products={products}
                 // checkoutForm={checkOutForm}
                 handleOnCheckoutFormChange={handleOnCheckoutFormChange}
@@ -101,6 +101,7 @@ export default function App() {
                       element={
                         <Home
                           products={products}
+                          shoppingCart = {shoppingCart}
                           handleAddItemToCart={handleAddItemToCart}
                           handleRemoveItemToCart={handleRemoveItemFromCart}
                         />

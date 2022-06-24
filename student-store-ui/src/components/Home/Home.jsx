@@ -3,7 +3,7 @@ import "./Home.css"
 import Hero from "../Hero/Hero"
 import ProductGrid from "../ProductGrid/ProductGrid"
 //.. brings it one folder up, ../../ brings two folders up
-export default function Home({products = "", handleAddItemToCart = "", handleRemoveItemToCart = ""}) {
+export default function Home({products = "", shoppingCart, handleAddItemToCart = "", handleRemoveItemToCart = ""}) {
   //console.log("products", products)
   return (
     <div className="home">
@@ -11,6 +11,7 @@ export default function Home({products = "", handleAddItemToCart = "", handleRem
       {/* <SubNavbar></SubNavbar> */}
       <ProductGrid
         products={products}
+        shoppingCart = {shoppingCart}
         handleAddItemToCart={handleAddItemToCart}
         handleRemoveItemToCart = {handleRemoveItemToCart}  
       />
