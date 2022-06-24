@@ -12,6 +12,7 @@ import NotFound from "../NotFound/NotFound"
 import Hero from "../Hero/Hero"
 import SearchBar from "../SearchBar/SearchBar"
 import About from "../About/About";
+import Contact from "../Contact/Contact";
 
 /* const {data} = await axios(URL), data.products = the array of objects where URL equals the information then console.log(data) */
 
@@ -21,6 +22,7 @@ export default function App() {
   const [error, setError] = useState('')
   const [isOpen, setIsOpen] = useState(false);
   const [shoppingCart, setShoppingCart] = useState([]) //contains itemId and quantity
+  const [checkoutForm, setCheckoutForm] = useState({ email: "", name: "" })
   const URL = 'https://codepath-store-api.herokuapp.com/store'
 
 
@@ -30,44 +32,40 @@ export default function App() {
   //when doing onclick it will call the function where its already a function so needs a () => to become a function definition for ()
   
   function handleAddItemToCart(productId) {
-    let checkExist = false;
-
-    for (let i = 0; i < shoppingCart.length; i++) {
-      if (shoppingCart[i].itemId == productId) {
-        shoppingCart[i].quantity += 1;
-        checkExist = true;
-        break;
-      }
-    }
-    if (!checkExist) {
-      let newItem = { itemId: productId, quantity: 1 }
-      setShoppingCart([...shoppingCart, newItem]) //adds it to the beginning of the array
-    }
-    console.log("adding product", productId)
-    console.log(shoppingCart)
+    var newShoppingCart = [...shoppingCart];
+    if (!newShoppingCart[productId]) newShoppingCart[productId] = {}
+    newShoppingCart[productId].quantity = (newShoppingCart[productId].quantity ?? 0) + 1
+    setShoppingCart(newShoppingCart)
   }  
 
-    function handleRemoveItemFromCart(productId) {
-      for (let i = 0; i < shoppingCart.length; i++) {
-        if (shoppingCart[i].itemId == productId) {
-          if (shoppingCart[i].quantity == 1) {
-            let temp = shoppingCart.filter(item => item.itemId !== productId)
-            setShoppingCart(temp)
-          }
-          shoppingCart[i].quantity -= 1;
-        }
-        return;
-      }
-      console.log("removing product",productId)
-      console.log(shoppingCart)
+  function handleRemoveItemFromCart(productId) {
+    var newShoppingCart = [...shoppingCart]
+    if (!newShoppingCart[productId]) {
+      newShoppingCart[productId] = {}
+      newShoppingCart[productId].quantity = 0;
+    }
+    if (newShoppingCart[productId].quantity == 0) newShoppingCart.filter((id) => {products.itemId !== id});
+    else { newShoppingCart[productId].quantity = (newShoppingCart[productId].quantity ?? 0) - 1 }
+    setShoppingCart(newShoppingCart)
+
+    
     }
 
     function handleOnCheckoutFormChange(name, value) {
-      //TODO
+      setCheckoutForm({
+        ...checkoutForm,
+        [name]: value,
+      })
     }
 
     function handleOnSubmitCheckoutForm() {
-      //some axios post with user field
+      axios.post("http://localhost:3001/store", { user: checkoutForm, shoppingCart: shoppingCart })
+        .then((response) => {
+          setShoppingCart([])
+          setCheckoutForm({ email: "", name: "" })
+        })
+        .catch((error) => { setError(error); console.log(error) })
+  
     }
 
     React.useEffect(() => {
@@ -91,10 +89,12 @@ export default function App() {
                 isOpen={isOpen}
                 shoppingCart={shoppingCart}
                 products={products}
-                // checkoutForm={checkOutForm}
+                checkoutForm={checkoutForm}
                 handleOnCheckoutFormChange={handleOnCheckoutFormChange}
                 handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}
                 handleOnToggle={handleOnToggle}
+                error = {error}
+                setError = {setError}
               />
               <div className="wrapper">
                 <div className="nav-wrapper">
@@ -115,7 +115,7 @@ export default function App() {
                         <Home
                           products={products}
                           setProducts = {setProducts}
-                          shoppingCart = {shoppingCart}
+                          shoppingCart={shoppingCart}
                           handleAddItemToCart={handleAddItemToCart}
                           handleRemoveItemToCart={handleRemoveItemFromCart}
                         />
@@ -133,6 +133,7 @@ export default function App() {
                   </Routes>
                 </div>
                 <About></About>
+                <Contact></Contact>
               </div>
             </div>
           </main>

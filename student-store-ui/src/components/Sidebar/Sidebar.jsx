@@ -1,7 +1,7 @@
 import * as React from "react"
 import "./Sidebar.css"
 import ShoppingCart from "../ShoppingCart/ShoppingCart"
-// import CheckoutForm from "../CheckoutForm/CheckoutForm"
+import CheckoutForm from "../CheckoutForm/CheckoutForm"
 
 export default function Sidebar({ isOpen,
   shoppingCart,
@@ -9,19 +9,35 @@ export default function Sidebar({ isOpen,
   checkoutForm,
   handleOnCheckoutFormChange,
   handleOnSubmitCheckoutForm,
-  handleOnToggle = false }) {
+  handleOnToggle = false,
+  error,
+  quantity,
+  setError
+}) {
 
   return (
-      <section className={isOpen ? "sidebar-open" : "sidebar-closed"}>
+      <div className={isOpen ? "sidebar-open" : "sidebar-closed"}>
       <button className="toggle-button" onClick={() => handleOnToggle()}>≡</button>
 
       {!isOpen ? " " :
-        <><h1>Shopping Cart</h1><ShoppingCart
-          isOpen={isOpen}
-          products={products}
-          shoppingCart={shoppingCart} /></>}
+        <><div className="shoppingCart">Shopping Cart
+          <ShoppingCart
+            isOpen={isOpen}
+            products={products}
+            shoppingCart={shoppingCart}
+            quantity={quantity} />
+        </div>
+          <div className="checkOut">
+            <CheckoutForm products={products}
+              isOpen={isOpen}
+              shoppingCart={shoppingCart}
+              checkoutForm={checkoutForm}
+              handleOnCheckoutFormChange={handleOnCheckoutFormChange}
+              handleOnSubmitCheckoutFormChange={handleOnSubmitCheckoutForm}
+              error={error}
+              setError={setError} /></div></>}
       
-    </section>
+    </div>
   )
 }
 

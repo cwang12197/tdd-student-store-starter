@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
 .navbar .links {
     display: flex;
     flex-direction: row;
@@ -5,15 +7,40 @@
     justify-content: space-around;
     list-style-type: none;
     margin-left: auto;
+    background-color: #b8c1b8;
     flex: 1;
 }
-.navbar {
-    background-color:red;
-    display: flex;
-    justify-content: row;
-    align-items: center;
+a:hover {
+    background-color: #a6b1a6;
+    padding: 3px;
+    border-radius: 3px;
 }
-
+.navbar {
+    max-width: 95%;
+    height:  100px;
+    margin-left:  auto;
+    margin-right:  auto;
+    margin-top:  10px;
+    margin-bottom:  50px;
+    border-radius:  25px;
+    box-shadow:  0 10px 40px rgba(0,0,0,0.1);
+    background-color: #b8c1b8;
+    transform-origin:  center center 0px;
+    transition:  all .5s ease-out;
+}
+.nav-wrapper:hover .navbar { 
+    transform: perspective(1000px) rotateX(355deg) rotateY(0deg) rotateZ(0deg);
+    box-shadow: 0 10px 40px rgba(0,0,0,0);
+}
+/* can put transition on wrapper behind it and because it doesn't move it will only occur once */
 .links {
     scroll-behavior: auto;
+
+}
+a {
+    background-color: #b8c1b8;
+    font-family: Quicksand;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
 }

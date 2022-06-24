@@ -1,19 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
 .toggle-button {
-    font-size: 30px;
+    font-size: 38px;
     background: transparent;
     border: none;
     cursor: pointer;
     visibility: visible;
-    position: relative;
+    position: fixed;
+    margin-top: 60px;
+    margin-left: 0px;
+    z-index: 1;
 }
 .toggle-button:hover{
     background-color: lightgray;
-    border-radius: 3px;
+    border-radius: 2px;
+    padding: 3px 8px 3px 8px;
 }
 
 .sidebar-open {
-    width: 550px;
+    max-width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 100px;
+
 }
 .sidebar-closed {
-    visibility: hidden;
+    position: fixed;
+    max-height: 100vh;
+}
+
+.shoppingCart{
+font-family: Dancing Script, cursive;
+padding: 5px;
+padding-top: 100px;
+margin:5px;
+font-size: 40px;
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+width: 100%;
 }
