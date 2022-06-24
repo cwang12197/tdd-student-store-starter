@@ -7,7 +7,10 @@ import { useState } from 'react'
 import axios from 'axios'
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { HashLink } from 'react-router-hash-link'
-import ProductDetail  from "../ProductDetail/ProductDetail"
+import ProductDetail from "../ProductDetail/ProductDetail"
+import NotFound from "../NotFound/NotFound"
+import Hero from "../Hero/Hero"
+import SearchBar from "../SearchBar/SearchBar"
 /* const {data} = await axios(URL), data.products = the array of objects where URL equals the information then console.log(data) */
 
 export default function App() {
@@ -75,7 +78,7 @@ export default function App() {
           setError("Error: Length of Products is 0")
         }
       })
-    })
+    }, [])
 
     return (
       <div className="app">
@@ -95,12 +98,21 @@ export default function App() {
                 <div className="nav-wrapper">
                   <Navbar />
                 </div>
+                <Hero 
+                />
+                <div className="subnavbar-wrapper">
+                  <SearchBar
+                    products={products}
+                    setProducts={setProducts}
+                  />
+                </div>
                 <div className="home">
                   <Routes>
                     <Route path="/"
                       element={
                         <Home
                           products={products}
+                          setProducts = {setProducts}
                           shoppingCart = {shoppingCart}
                           handleAddItemToCart={handleAddItemToCart}
                           handleRemoveItemToCart={handleRemoveItemFromCart}
@@ -111,10 +123,14 @@ export default function App() {
                       element={<ProductDetail
                         handleAddItemToCart={handleAddItemToCart}
                         handleRemoveItemToCart={handleRemoveItemFromCart}
+                        shoppingCart={shoppingCart}
+                        isFetching={isFetching}
+                        error = {error}
                       />} />
-                    {/* <Route path="*" element={<NotFound />} /> */}
+                    <Route path="*" element={<NotFound />} />
                   </Routes>
                 </div>
+                
               </div>
             </div>
           </main>

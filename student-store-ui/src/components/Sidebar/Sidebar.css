@@ -3,9 +3,17 @@
     background: transparent;
     border: none;
     cursor: pointer;
+    visibility: visible;
+    position: relative;
 }
 .toggle-button:hover{
     background-color: lightgray;
     border-radius: 3px;
 }
 
+.sidebar-open {
+    width: 550px;
+}
+.sidebar-closed {
+    visibility: hidden;
+}
