@@ -9,17 +9,18 @@
     visibility: visible;
     position: fixed;
     margin-top: 60px;
-    margin-left: 0px;
+    margin-left: 1%;
+    padding-left: 0px;
     z-index: 1;
 }
 .toggle-button:hover{
     background-color: lightgray;
     border-radius: 2px;
-    padding: 3px 8px 3px 8px;
+    padding: 1px 2px 2px 1px;
 }
 
 .sidebar-open {
-    max-width: 300px;
+    max-width: 350px;
     display: flex;
     flex-wrap: wrap;
     max-height: 100px;
@@ -40,4 +41,10 @@ display: flex;
 justify-content: center;
 flex-wrap: wrap;
 width: 100%;
+}
+
+.checkOut {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
