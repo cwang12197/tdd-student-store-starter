@@ -29,7 +29,7 @@ a:hover {
     transition:  all .5s ease-out;
 }
 .nav-wrapper:hover .navbar { 
-    margin: 0px;
+    padding: 0px;
     transform: perspective(1000px) rotateX(355deg) rotateY(0deg) rotateZ(0deg);
     box-shadow: 0 10px 40px rgba(0,0,0,0);
 }
