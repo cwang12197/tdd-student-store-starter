@@ -34,7 +34,6 @@ export default function Sidebar({ isOpen,
               handleOnCheckoutFormChange={handleOnCheckoutFormChange}
               handleOnSubmitCheckoutFormChange={handleOnSubmitCheckoutForm}
               checkoutMessage = {checkoutMessage} /></div></>}
-      
     </div>
   )
 }
