@@ -285,20 +285,22 @@ The following specifications were met on the Express backend and the React front
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+Doing the fast food starter and twitter labs were very helpful in exposing me to React and getting used to linking components together. 
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-Add your response here
+If I had more time I would have worked more on the styling aspect as well as adding more stretch features. 
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+I really like the styling for my shopping cart as well as the navigation bar animation when hovering. Definitely learned a plethora of new things such as don't access a state object directly to modify it or else it will create random errors and debugging it takes forever.  
 
 ### Open-source libraries used
 
 - Add any links to open-source libraries used in your project.
+N/A
 
 ### Shout out
 
 Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Shoutout to Abiel, Robert, Preethi, Arisa, Emily, and the whole class for helping me through my debugging process, especially with the shopping cart!!

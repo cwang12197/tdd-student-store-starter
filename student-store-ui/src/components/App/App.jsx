@@ -84,8 +84,11 @@ export default function App() {
     }
 
   function handleOnSubmitCheckoutForm() {
-    console.log("checkout", checkoutForm)
-    if (checkoutForm.name == "" || checkoutForm.email == "") {
+    let newUser = {
+      name: checkoutForm.name,
+      email: checkoutForm.email
+    }
+    if (newUser.name == "" || newUser.email == "") {
       setCheckoutMessage("Error: Please input both your name and email");
       return;
     }
@@ -94,19 +97,9 @@ export default function App() {
       return;
     }
 
-    axios.post(URL, {
-      user: checkoutForm.name,
-      email: checkoutForm.email
-    })
-        .then((response) => {
           setCheckoutMessage("Success!")
           setShoppingCart([])
           setCheckoutForm({ name: "", email: "" })
-        })
-        .catch((error) => {
-          console.log(error)
-          setError(true)
-        setCheckoutMessage(error)})
   
     }
 
