@@ -12,6 +12,7 @@
 }
 a:hover {
     background-color: #a6b1a6;
+    padding: 2px 2px 2px 2px;
     border-radius: 3px;
 }
 .navbar {
