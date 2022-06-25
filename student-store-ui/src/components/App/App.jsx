@@ -42,12 +42,10 @@ export default function App() {
     if (!newShoppingCart[productId]) {
       return;
     }
-    else { newShoppingCart[productId].quantity = (newShoppingCart[productId].quantity || 0) - 1 }
-    if (newShoppingCart[productId].quantity == 0) newShoppingCart.splice(productId,"");
+    else { newShoppingCart[productId].quantity = (newShoppingCart[productId].quantity ?? 0) - 1 }
+    if (newShoppingCart[productId].quantity == 0) newShoppingCart.splice(productId,1);
     setShoppingCart(newShoppingCart)
-    console.log(shoppingCart)
 
-    
     }
 
     function handleOnCheckoutFormChange(name, value) {
