@@ -19,10 +19,12 @@ import Contact from "../Contact/Contact"
 export default function App() {
   const [products, setProducts] = useState([])
   const [isFetching, setIsFetching] = useState(false)
-  const [error, setError] = useState('')
+  const [error, setError] = useState(false)
   const [isOpen, setIsOpen] = useState(false);
   const [shoppingCart, setShoppingCart] = useState([]) 
   const [checkoutForm, setCheckoutForm] = useState({ name: "", email: "" })
+  const [checkoutMessage, setCheckoutMessage] = useState("")
+
   const URL = 'https://codepath-store-api.herokuapp.com/store'
 
 
@@ -31,22 +33,48 @@ export default function App() {
   } 
   
   function handleAddItemToCart(productId) {
-    var newShoppingCart = [...shoppingCart];
-    if (!newShoppingCart[productId]) newShoppingCart[productId] = {}
-    newShoppingCart[productId].quantity = (newShoppingCart[productId].quantity ?? 0) + 1
+   
+    var itemIndex = -1
+    for (let i = 0; i < shoppingCart.length; i++) {
+      if (shoppingCart[i].itemId == productId) {
+        itemIndex = i
+      }
+    }
+    var newShoppingCart = [...shoppingCart]
+    
+    if (itemIndex == -1) {
+     
+      var newItem = {
+        itemId: productId,
+        quantity: 1
+      }
+     
+      newShoppingCart.push(newItem)
+
+    } else {
+      newShoppingCart[itemIndex].quantity++
+    }
     setShoppingCart(newShoppingCart)
-  }  
+  }
 
   function handleRemoveItemFromCart(productId) {
+    var itemIndex = -1
+   
+    for (let i = 0; i < shoppingCart.length; i++) {
+      if (shoppingCart[i].itemId == productId) {
+        itemIndex = i
+      }
+    }
     var newShoppingCart = [...shoppingCart]
-    if (!newShoppingCart[productId]) {
-      return;
+    
+    if (itemIndex > -1) {
+      newShoppingCart[itemIndex].quantity--
+      if (newShoppingCart[itemIndex].quantity == 0) {
+        newShoppingCart.splice(itemIndex, 1)
+      }
     }
-    else { newShoppingCart[productId].quantity = (newShoppingCart[productId].quantity ?? 0) - 1 }
-    if (newShoppingCart[productId].quantity == 0) newShoppingCart.splice(productId,1);
     setShoppingCart(newShoppingCart)
-
-    }
+  }
 
     function handleOnCheckoutFormChange(name, value) {
       setCheckoutForm({
@@ -55,13 +83,30 @@ export default function App() {
       })
     }
 
-    function handleOnSubmitCheckoutForm() {
-      axios.post("https://codepath-store-api.herokuapp.com/store", { user: checkoutForm.name, email: checkoutForm.email })
+  function handleOnSubmitCheckoutForm() {
+    console.log("checkout", checkoutForm)
+    if (checkoutForm.name == "" || checkoutForm.email == "") {
+      setCheckoutMessage("Error: Please input both your name and email");
+      return;
+    }
+    if (shoppingCart.length == 0) {
+      setCheckoutMessage("Error: Your shopping cart is empty");
+      return;
+    }
+
+    axios.post(URL, {
+      user: checkoutForm.name,
+      email: checkoutForm.email
+    })
         .then((response) => {
+          setCheckoutMessage("Success!")
           setShoppingCart([])
           setCheckoutForm({ name: "", email: "" })
         })
-        .catch((error) => { console.log(error) })
+        .catch((error) => {
+          console.log(error)
+          setError(true)
+        setCheckoutMessage(error)})
   
     }
 
@@ -90,8 +135,7 @@ export default function App() {
                 handleOnCheckoutFormChange={handleOnCheckoutFormChange}
                 handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}
                 handleOnToggle={handleOnToggle}
-                error = {error}
-                setError = {setError}
+                checkoutMessage = {checkoutMessage}
               />
               <div className="wrapper">
                 <div className="nav-wrapper">

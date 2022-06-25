@@ -10,9 +10,8 @@ export default function Sidebar({ isOpen,
   handleOnCheckoutFormChange,
   handleOnSubmitCheckoutForm,
   handleOnToggle = false,
-  error,
   quantity,
-  setError
+  checkoutMessage
 }) {
 
   return (
@@ -34,8 +33,7 @@ export default function Sidebar({ isOpen,
               checkoutForm={checkoutForm}
               handleOnCheckoutFormChange={handleOnCheckoutFormChange}
               handleOnSubmitCheckoutFormChange={handleOnSubmitCheckoutForm}
-              error={error}
-              setError={setError} /></div></>}
+              checkoutMessage = {checkoutMessage} /></div></>}
       
     </div>
   )
