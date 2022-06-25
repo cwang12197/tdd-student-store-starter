@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap');
+
+.checkout-name {
+    font-family: Dancing Script;
+    font-size: 30px;
+
+}
+
+.checkout-form {
+    display:flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+}
+
+.checkout-form-input {
+    padding-right: 80px;
+}
+
+.success h3 {
+    font-family: Gaegu;
+    font-size: 30px;
+}
+
+.checkout-button {
+    border: 2px solid #dad7cd;
+    border-radius: 70px;
+    font-size: 15px;
+    margin: 3px;
+    margin-top: 5px;
+    padding: 5px 15px 5px 15px;
+    font-family: Poppins;
+    cursor: pointer;
+}
+    
+.checkout-button:hover {
+    background-color: #cfcbbe;
+}
+
+.checkout-message {
+    font-family: Gaegu;
+    font-size: 30px;
+    display: flex;
+    text-align: center;
+}
+
+button .checkout-button {
+    display:flex;
+    justify-content: center;
+}
