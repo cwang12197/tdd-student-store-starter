@@ -22,7 +22,7 @@ export default function App() {
   const [error, setError] = useState('')
   const [isOpen, setIsOpen] = useState(false);
   const [shoppingCart, setShoppingCart] = useState([]) 
-  const [checkoutForm, setCheckoutForm] = useState({ email: "", name: "" })
+  const [checkoutForm, setCheckoutForm] = useState({ name: "", email: "" })
   const URL = 'https://codepath-store-api.herokuapp.com/store'
 
 
@@ -43,9 +43,10 @@ export default function App() {
       newShoppingCart[productId] = {}
       newShoppingCart[productId].quantity = 0;
     }
-    if (newShoppingCart[productId].quantity == 0) newShoppingCart.filter((id) => {products.itemId !== id});
     else { newShoppingCart[productId].quantity = (newShoppingCart[productId].quantity ?? 0) - 1 }
+    if (newShoppingCart[productId].quantity == 0) newShoppingCart.splice(productId,1);
     setShoppingCart(newShoppingCart)
+    console.log(shoppingCart)
 
     
     }
@@ -58,12 +59,12 @@ export default function App() {
     }
 
     function handleOnSubmitCheckoutForm() {
-      axios.post("http://localhost:3001/store", { user: checkoutForm, shoppingCart: shoppingCart })
+      axios.post("https://codepath-store-api.herokuapp.com/store", { user: checkoutForm.name, email: checkoutForm.email })
         .then((response) => {
           setShoppingCart([])
-          setCheckoutForm({ email: "", name: "" })
+          setCheckoutForm({ name: "", email: "" })
         })
-        .catch((error) => { setError(error); console.log(error) })
+        .catch((error) => { console.log(error) })
   
     }
 
