@@ -40,11 +40,10 @@ export default function App() {
   function handleRemoveItemFromCart(productId) {
     var newShoppingCart = [...shoppingCart]
     if (!newShoppingCart[productId]) {
-      newShoppingCart[productId] = {}
-      newShoppingCart[productId].quantity = 0;
+      return;
     }
-    else { newShoppingCart[productId].quantity = (newShoppingCart[productId].quantity ?? 0) - 1 }
-    if (newShoppingCart[productId].quantity == 0) newShoppingCart.splice(productId,1);
+    else { newShoppingCart[productId].quantity = (newShoppingCart[productId].quantity || 0) - 1 }
+    if (newShoppingCart[productId].quantity == 0) newShoppingCart.splice(productId,"");
     setShoppingCart(newShoppingCart)
     console.log(shoppingCart)
 
