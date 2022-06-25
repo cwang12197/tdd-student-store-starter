@@ -14,22 +14,21 @@ import SearchBar from "../SearchBar/SearchBar"
 import About from "../About/About"
 import Contact from "../Contact/Contact"
 
-/* const {data} = await axios(URL), data.products = the array of objects where URL equals the information then console.log(data) */
+
 
 export default function App() {
   const [products, setProducts] = useState([])
   const [isFetching, setIsFetching] = useState(false)
   const [error, setError] = useState('')
   const [isOpen, setIsOpen] = useState(false);
-  const [shoppingCart, setShoppingCart] = useState([]) //contains itemId and quantity
+  const [shoppingCart, setShoppingCart] = useState([]) 
   const [checkoutForm, setCheckoutForm] = useState({ email: "", name: "" })
   const URL = 'https://codepath-store-api.herokuapp.com/store'
 
 
   function handleOnToggle() {
     setIsOpen(!isOpen)
-  } //can also pass in value that is the previous value because then it will be a function otherwise
-  //when doing onclick it will call the function where its already a function so needs a () => to become a function definition for ()
+  } 
   
   function handleAddItemToCart(productId) {
     var newShoppingCart = [...shoppingCart];
@@ -120,7 +119,6 @@ export default function App() {
                           handleRemoveItemToCart={handleRemoveItemFromCart}
                         />
                       } />
-                    {/* ask how to change into variable */}
                     <Route path="/products/:productId"
                       element={<ProductDetail
                         handleAddItemToCart={handleAddItemToCart}
@@ -142,5 +140,3 @@ export default function App() {
       </div>
     )
   }
-
-//userInfo.address.city checks if all is false || 'no value yet' then return backup value
