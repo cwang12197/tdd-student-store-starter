@@ -11,8 +11,8 @@ import ProductDetail from "../ProductDetail/ProductDetail"
 import NotFound from "../NotFound/NotFound"
 import Hero from "../Hero/Hero"
 import SearchBar from "../SearchBar/SearchBar"
-import About from "../About/About";
-import Contact from "../Contact/Contact";
+import About from "../About/About"
+import Contact from "../Contact/Contact"
 
 /* const {data} = await axios(URL), data.products = the array of objects where URL equals the information then console.log(data) */
 

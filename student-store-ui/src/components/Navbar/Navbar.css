@@ -35,6 +35,7 @@ a:hover {
 /* can put transition on wrapper behind it and because it doesn't move it will only occur once */
 .links {
     scroll-behavior: auto;
+    padding-bottom: 2px;
 
 }
 a {
@@ -43,4 +44,5 @@ a {
     text-decoration: none;
     color: white;
     font-size: 20px;
+    margin-bottom: 2px;
 }
