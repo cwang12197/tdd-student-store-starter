@@ -34,15 +34,15 @@ export default function App() {
   
   function handleAddItemToCart(productId) {
    
-    var itemIndex = -1
+    var index = -1
     for (let i = 0; i < shoppingCart.length; i++) {
       if (shoppingCart[i].itemId == productId) {
-        itemIndex = i
+        index = i
       }
     }
     var newShoppingCart = [...shoppingCart]
     
-    if (itemIndex == -1) {
+    if (index == -1) {
      
       var newItem = {
         itemId: productId,
@@ -52,25 +52,25 @@ export default function App() {
       newShoppingCart.push(newItem)
 
     } else {
-      newShoppingCart[itemIndex].quantity++
+      newShoppingCart[index].quantity++
     }
     setShoppingCart(newShoppingCart)
   }
 
   function handleRemoveItemFromCart(productId) {
-    var itemIndex = -1
+    var index = -1
    
     for (let i = 0; i < shoppingCart.length; i++) {
       if (shoppingCart[i].itemId == productId) {
-        itemIndex = i
+        index = i
       }
     }
     var newShoppingCart = [...shoppingCart]
     
-    if (itemIndex > -1) {
-      newShoppingCart[itemIndex].quantity--
-      if (newShoppingCart[itemIndex].quantity == 0) {
-        newShoppingCart.splice(itemIndex, 1)
+    if (index > -1) {
+      newShoppingCart[index].quantity--
+      if (newShoppingCart[index].quantity == 0) {
+        newShoppingCart.splice(index, 1)
       }
     }
     setShoppingCart(newShoppingCart)
