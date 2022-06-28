@@ -1,0 +1,59 @@
+@import url('http://fonts.cdnfonts.com/css/antique-olive');
+
+.grid {
+    display: flex;
+    align-items: row;
+    flex-wrap: wrap;
+}
+.product-image {
+    width: 200px;
+    height: auto;
+}
+
+.quantity {
+    display: flex;
+    align-items: row;
+}
+
+.product-container {
+    font-family: Antique Olive,sans-serif;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.quantity button {
+    border: 1px solid #dad7cd;
+    border-radius: 30px;
+    font-size: 10px;
+    margin: 3px;
+    padding: 0px 5px 0px 5px;
+    font-family: Poppins;
+    cursor: pointer;
+}
+    
+.quantity button:hover {
+    background-color: #cfcbbe;
+}
+
+
+.product-card {
+    box-shadow: 0 4px 8px 0 white;
+    transition: 0.3s;
+    margin: 10px;
+}
+
+.product-card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+.product-card .image{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a .image {
+    background-color: none;
+}

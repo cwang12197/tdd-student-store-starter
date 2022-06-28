@@ -1,0 +1,16 @@
+.grid {
+    display:flex;
+    justify-content: center;
+}
+
+.product-grid h3 {
+    font-family: quicksand;
+    display: flex;
+    justify-content: center;
+    padding-top: 0px;
+}
+
+h3 {
+    display:flex;
+    justify-content: center;
+}
