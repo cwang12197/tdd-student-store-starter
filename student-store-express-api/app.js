@@ -3,6 +3,7 @@ const express = require('express') //wiring the server
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const app = express() 
+const shoppingCart = require('.../student-store-ui/src/components/ShoppingCart')
 
 app.use(bodyParser.json())
 app.use(morgan('tiny')) 
@@ -21,7 +22,7 @@ app.get(`/store/:productId`, (req, res) => {
 })
 
 app.post(`/store`, (req, res) => {
-    
+    res.send(shoppingCart)
 })
 
 module.exports = app //makes it like export default function
