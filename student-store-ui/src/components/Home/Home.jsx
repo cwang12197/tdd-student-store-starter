@@ -1,7 +1,8 @@
 import * as React from "react"
 import "./Home.css"
 import ProductGrid from "../ProductGrid/ProductGrid"
-export default function Home({ products = "",
+export default function Home({
+  products = "",
   setProducts,
   shoppingCart,
   handleAddItemToCart = "",
@@ -11,6 +12,7 @@ export default function Home({ products = "",
     <div className="home">
       <ProductGrid
         products={products}
+        setProducts={setProducts}
         shoppingCart = {shoppingCart}
         handleAddItemToCart={handleAddItemToCart}
         handleRemoveItemToCart = {handleRemoveItemToCart}  

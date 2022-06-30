@@ -2,20 +2,20 @@ import * as React from "react"
 import { Link } from "react-router-dom"
 import "./ProductCard.css"
 
-export default function ProductCard({ product,
+export default function ProductCard({
+    product,
     productId,
     shoppingCart,
     handleAddItemToCart,
     handleRemoveItemToCart,
     showDescription })
 {
-    let URL = `/products/${productId}`
     let price = parseFloat(product.price).toFixed(2)
     if (price.length < 3) {
         price = "0"+ price
     }
     
-    function findQuantity(productId) {
+    function getQuantity(productId) {
         let quantity = null;
         for (let i = 0; i < shoppingCart.length; i++) {
             if (shoppingCart[i].itemId == productId) {
@@ -28,7 +28,7 @@ export default function ProductCard({ product,
     return (
         <><div className="product-card">
             <div className = "image">
-            <Link to={"/products/" + productId} className="media">
+            <Link to={"/store/" + productId} className="media">
                 <img className="product-image"
                     src={product.image}
                     alt={product.name} />
@@ -46,7 +46,7 @@ export default function ProductCard({ product,
                         handleAddItemToCart(productId)
                     }
                     }>+</button>
-                    <div className="product-quantity">{findQuantity(productId)?? 0}</div>
+                    <div className="product-quantity">{getQuantity(productId)?? 0}</div>
                     <button className="remove" onClick={() => handleRemoveItemToCart(productId)}>-</button>
                 </div>
                 {(showDescription) && <div className="product-description">{product.description}</div>}

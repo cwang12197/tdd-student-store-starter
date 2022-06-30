@@ -145,5 +145,311 @@
       "price": 999.99
     }
   ],
-  "purchases": []
+  "purchases": [
+    [
+      {
+        "id": 1,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "subtotal": 1.98,
+        "tax": "0.17",
+        "total": "2.15",
+        "createdAt": "2022-06-30T06:03:01.096Z"
+      }
+    ],
+    [
+      {
+        "id": 2,
+        "name": "giphy",
+        "email": "christinawang@fb.com",
+        "order": [
+          {
+            "itemId": 2,
+            "quantity": 1
+          }
+        ],
+        "subtotal": 1.5,
+        "tax": "0.13",
+        "total": "1.63",
+        "createdAt": "2022-06-30T06:04:47.882Z"
+      }
+    ],
+    [
+      {
+        "id": 3,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "order": {
+          "shoppingCart": [
+            {
+              "itemId": 1,
+              "quantity": 1
+            }
+          ]
+        },
+        "subtotal": 0.99,
+        "tax": "0.09",
+        "total": "1.08",
+        "createdAt": "2022-06-30T06:05:03.818Z"
+      }
+    ],
+    [
+      {
+        "id": 4,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "order": [
+          [
+            {
+              "itemId": 1,
+              "quantity": 1
+            }
+          ]
+        ],
+        "subtotal": 0.99,
+        "tax": "0.09",
+        "total": "1.08",
+        "createdAt": "2022-06-30T06:05:46.830Z"
+      }
+    ],
+    [
+      {
+        "id": 5,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "order": [
+          {
+            "itemId": 1,
+            "quantity": 2
+          }
+        ],
+        "subtotal": 1.98,
+        "tax": "0.17",
+        "total": "2.15",
+        "createdAt": "2022-06-30T06:10:06.047Z"
+      }
+    ],
+    [
+      {
+        "id": 6,
+        "name": "aa",
+        "email": "d@gmail.com",
+        "order": [
+          {
+            "itemId": 1,
+            "quantity": 2
+          }
+        ],
+        "subtotal": 1.98,
+        "tax": "0.17",
+        "total": "2.15",
+        "createdAt": "2022-06-30T06:11:48.386Z"
+      }
+    ],
+    [
+      {
+        "id": 7,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "subtotal": 2.9699999999999998,
+        "tax": "0.26",
+        "total": "3.23",
+        "createdAt": "2022-06-30T06:37:06.108Z"
+      }
+    ],
+    [
+      {
+        "id": 8,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "subtotal": 10.75,
+        "tax": "0.94",
+        "total": "11.69",
+        "createdAt": "2022-06-30T06:44:05.079Z"
+      }
+    ],
+    [
+      {
+        "id": 9,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "subtotal": 1.98,
+        "tax": "0.17",
+        "total": "2.15",
+        "createdAt": "2022-06-30T06:44:57.814Z"
+      }
+    ],
+    [
+      {
+        "id": 10,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "subtotal": 9.23,
+        "tax": "0.81",
+        "total": "10.04",
+        "createdAt": "2022-06-30T06:46:10.197Z"
+      }
+    ],
+    [
+      {
+        "id": 11,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "subtotal": 7.5,
+        "tax": "0.66",
+        "total": "8.16",
+        "createdAt": "2022-06-30T06:48:09.004Z"
+      }
+    ],
+    [
+      {
+        "id": 12,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "subtotal": 0.99,
+        "tax": "0.09",
+        "total": "1.08",
+        "createdAt": "2022-06-30T06:50:18.087Z"
+      }
+    ],
+    [
+      {
+        "id": 13,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "subtotal": 9.49,
+        "tax": "0.83",
+        "total": "10.32",
+        "createdAt": "2022-06-30T06:52:39.458Z"
+      }
+    ],
+    [
+      {
+        "id": 14,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "subtotal": 3,
+        "tax": "0.26",
+        "total": "3.26",
+        "createdAt": "2022-06-30T07:00:23.789Z"
+      }
+    ],
+    [
+      {
+        "id": 15,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "subtotal": 1.5,
+        "tax": "0.13",
+        "total": "1.63",
+        "createdAt": "2022-06-30T07:04:26.409Z"
+      }
+    ],
+    [
+      {
+        "id": 16,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "subtotal": 4.49,
+        "tax": "0.39",
+        "total": "4.88",
+        "createdAt": "2022-06-30T07:06:44.301Z"
+      }
+    ],
+    [
+      {
+        "id": 17,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "subtotal": 2.9699999999999998,
+        "tax": "0.26",
+        "total": "3.23",
+        "createdAt": "2022-06-30T07:11:00.621Z"
+      }
+    ],
+    [
+      {
+        "id": 18,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "subtotal": 4.5,
+        "tax": "0.39",
+        "total": "4.89",
+        "createdAt": "2022-06-30T07:26:10.635Z"
+      }
+    ],
+    [
+      {
+        "id": 19,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "subtotal": 4.5,
+        "tax": "0.39",
+        "total": "4.89",
+        "createdAt": "2022-06-30T07:31:30.732Z"
+      }
+    ],
+    [
+      {
+        "id": 20,
+        "name": "aa",
+        "email": "christinawang@fb.com",
+        "subtotal": 1.5,
+        "tax": "0.13",
+        "total": "1.63",
+        "createdAt": "2022-06-30T07:33:10.780Z"
+      }
+    ],
+    [
+      {
+        "id": 21,
+        "name": "testing",
+        "email": "testing@gmail.com",
+        "subtotal": 110,
+        "tax": "9.63",
+        "total": "119.62",
+        "createdAt": "2022-06-30T07:34:44.569Z"
+      }
+    ],
+    {
+      "id": 22,
+      "name": "aa",
+      "email": "d@gmail.com",
+      "subtotal": 9,
+      "tax": "0.79",
+      "total": "9.79",
+      "createdAt": "2022-06-30T08:17:32.692Z"
+    },
+    {
+      "finalPurchase": {
+        "id": 23,
+        "name": "giphy",
+        "email": "d@gmail.com",
+        "subtotal": 9,
+        "tax": "0.79",
+        "total": "9.79",
+        "createdAt": "2022-06-30T08:26:06.409Z"
+      }
+    },
+    {
+      "finalPurchase": {
+        "id": 24,
+        "name": "giphy",
+        "email": "d@gmail.com",
+        "subtotal": 10.5,
+        "tax": "0.92",
+        "total": "11.42",
+        "createdAt": "2022-06-30T08:27:55.722Z"
+      }
+    },
+    {
+      "id": 25,
+      "name": "aa",
+      "email": "d@gmail.com",
+      "subtotal": 12.25,
+      "tax": "1.07",
+      "total": "13.32",
+      "createdAt": "2022-06-30T08:32:32.256Z"
+    }
+  ]
 }

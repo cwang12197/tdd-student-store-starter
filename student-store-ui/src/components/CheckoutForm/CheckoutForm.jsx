@@ -1,6 +1,6 @@
 import * as React from "react"
-import { useState } from "react"
 import "./CheckoutForm.css"
+import { Link } from "react-router-dom"
 
 export default function CheckoutForm({ products, isOpen, shoppingCart, checkoutForm, handleOnCheckoutFormChange,
   handleOnSubmitCheckoutFormChange, checkoutMessage}) {
@@ -19,7 +19,8 @@ export default function CheckoutForm({ products, isOpen, shoppingCart, checkoutF
         <button className="checkout-button" onClick={() => {
                   handleOnSubmitCheckoutFormChange()
               }}>Checkout</button>
-                <div className="checkout-message">{checkoutMessage}</div>
+        <div className="checkout-message">{checkoutMessage}</div>
+        <Link to = "/store/purchases" className = "checkout-form">Purchase History</Link>
       </div>
     </>
   )

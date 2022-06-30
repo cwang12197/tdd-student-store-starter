@@ -1,177 +1,201 @@
-import * as React from "react"
-import Navbar from "../Navbar/Navbar"
-import Sidebar from "../Sidebar/Sidebar"
-import Home from "../Home/Home"
-import "./App.css"
-import { useState } from 'react'
-import axios from 'axios'
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { HashLink } from 'react-router-hash-link'
-import ProductDetail from "../ProductDetail/ProductDetail"
-import NotFound from "../NotFound/NotFound"
-import Hero from "../Hero/Hero"
-import SearchBar from "../SearchBar/SearchBar"
-import About from "../About/About"
-import Contact from "../Contact/Contact"
-
-
+import * as React from "react";
+import Navbar from "../Navbar/Navbar";
+import Sidebar from "../Sidebar/Sidebar";
+import Home from "../Home/Home";
+import "./App.css";
+import { useState } from "react";
+import axios from "axios";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ProductDetail from "../ProductDetail/ProductDetail";
+import NotFound from "../NotFound/NotFound";
+import Hero from "../Hero/Hero";
+import SearchBar from "../SearchBar/SearchBar";
+import About from "../About/About";
+import Contact from "../Contact/Contact";
+import Orders from "../Orders/Orders";
 
 export default function App() {
-  const [products, setProducts] = useState([])
-  const [isFetching, setIsFetching] = useState(false)
-  const [error, setError] = useState(false)
+  const [products, setProducts] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
+  const [error, setError] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [shoppingCart, setShoppingCart] = useState([]) 
-  const [checkoutForm, setCheckoutForm] = useState({ name: "", email: "" })
-  const [checkoutMessage, setCheckoutMessage] = useState("")
+  const [shoppingCart, setShoppingCart] = useState([]);
+  const [checkoutForm, setCheckoutForm] = useState({ name: "", email: "" });
+  const [checkoutMessage, setCheckoutMessage] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [category, setCategory] = useState("All Categories");
+  const [purchases, setPurchases] = useState();
 
-  const URL = 'https://codepath-store-api.herokuapp.com/store'
+  const URL = "http://localhost:3001/store";
+  const PURCHASE_URL = "http://localhost:3001/store/purchases";
 
+  React.useEffect(() => {
+    axios
+      .get(URL)
+      .then((response) => {
+        let newProducts = response.data.products;
+        if (category !== "All Categories") {
+          newProducts = newProducts.filter(
+            (item) => item.category == category.toLowerCase()
+          );
+        }
+        newProducts = newProducts.filter((item) =>
+          item.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setProducts(newProducts);
+      })
+      .catch((error) => {
+        console.log(error);
+        return <NotFound />;
+      });
+    axios.get(PURCHASE_URL).then((response) => {
+      if (response.data.purchases != null) {
+        setPurchases(response.data);
+        console.log("responses", response);
+        console.log(purchases);
+      }
+    });
+  }, [category, searchTerm]);
+
+  const handleSearchChange = (event) => {
+    event.preventDefault();
+    setSearchTerm(event.target.value);
+  };
 
   function handleOnToggle() {
-    setIsOpen(!isOpen)
-  } 
-  
+    setIsOpen(!isOpen);
+  }
+
   function handleAddItemToCart(productId) {
-   
-    var index = -1
+    var index = -1;
     for (let i = 0; i < shoppingCart.length; i++) {
       if (shoppingCart[i].itemId == productId) {
-        index = i
+        index = i;
       }
     }
-    var newShoppingCart = [...shoppingCart]
-    
+    var newShoppingCart = [...shoppingCart];
+
     if (index == -1) {
-     
       var newItem = {
         itemId: productId,
-        quantity: 1
-      }
-     
-      newShoppingCart.push(newItem)
+        quantity: 1,
+      };
 
+      newShoppingCart.push(newItem);
     } else {
-      newShoppingCart[index].quantity++
+      newShoppingCart[index].quantity++;
     }
-    setShoppingCart(newShoppingCart)
+    setShoppingCart(newShoppingCart);
   }
 
   function handleRemoveItemFromCart(productId) {
-    var index = -1
-   
+    var index = -1;
+
     for (let i = 0; i < shoppingCart.length; i++) {
       if (shoppingCart[i].itemId == productId) {
-        index = i
+        index = i;
       }
     }
-    var newShoppingCart = [...shoppingCart]
-    
+    var newShoppingCart = [...shoppingCart];
+
     if (index > -1) {
-      newShoppingCart[index].quantity--
+      newShoppingCart[index].quantity--;
       if (newShoppingCart[index].quantity == 0) {
-        newShoppingCart.splice(index, 1)
+        newShoppingCart.splice(index, 1);
       }
     }
-    setShoppingCart(newShoppingCart)
+    setShoppingCart(newShoppingCart);
   }
 
-    function handleOnCheckoutFormChange(name, value) {
-      setCheckoutForm({
-        ...checkoutForm,
-        [name]: value,
-      })
-    }
+  function handleOnCheckoutFormChange(name, value) {
+    setCheckoutForm({
+      ...checkoutForm,
+      [name]: value,
+    });
+  }
 
   function handleOnSubmitCheckoutForm() {
-    let newUser = {
-      name: checkoutForm.name,
-      email: checkoutForm.email
-    }
-    if (newUser.name == "" || newUser.email == "") {
-      setCheckoutMessage("Error: Please input both your name and email");
-      return;
-    }
-    if (shoppingCart.length == 0) {
-      setCheckoutMessage("Error: Your shopping cart is empty");
-      return;
-    }
-
-          setCheckoutMessage("Success!")
-          setShoppingCart([])
-          setCheckoutForm({ name: "", email: "" })
-  
-    }
-
-    React.useEffect(() => {
-      setIsFetching(true)
-      axios.get(URL).then((response) => {
-        setProducts(response.data.products);
-        setIsFetching(false)
-      }).catch(function (error) {
-        if (products.length == 0) {
-          setError("Error: Length of Products is 0")
-        }
+    axios
+      .post(URL, { shoppingCart: shoppingCart, user: checkoutForm })
+      .then(function (response) {
+        setCheckoutMessage("Success!");
+        setShoppingCart([]);
+        setCheckoutForm({ name: "", email: "" });
       })
-    }, [])
-
-    return (
-      <div className="app">
-        <BrowserRouter>
-          <main>
-            <div className="container">
-              <Sidebar
-                isOpen={isOpen}
-                shoppingCart={shoppingCart}
-                products={products}
-                checkoutForm={checkoutForm}
-                handleOnCheckoutFormChange={handleOnCheckoutFormChange}
-                handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}
-                handleOnToggle={handleOnToggle}
-                checkoutMessage = {checkoutMessage}
-              />
-              <div className="wrapper">
-                <div className="nav-wrapper">
-                  <Navbar />
-                </div>
-                <Hero 
+      .catch(function (error) {
+        setCheckoutMessage(error);
+      });
+  }
+  return (
+    <div className="app">
+      <BrowserRouter>
+        <main>
+          <div className="container">
+            <Sidebar
+              isOpen={isOpen}
+              shoppingCart={shoppingCart}
+              products={products}
+              checkoutForm={checkoutForm}
+              handleOnCheckoutFormChange={handleOnCheckoutFormChange}
+              handleOnSubmitCheckoutForm={handleOnSubmitCheckoutForm}
+              handleOnToggle={handleOnToggle}
+              checkoutMessage={checkoutMessage}
+            />
+            <div className="wrapper">
+              <div className="nav-wrapper">
+                <Navbar />
+              </div>
+              <Hero />
+              <div className="subnavbar-wrapper">
+                <SearchBar
+                  products={products}
+                  setProducts={setProducts}
+                  searchTerm={searchTerm}
+                  handleSearchChange={handleSearchChange}
+                  setCategory={setCategory}
                 />
-                <div className="subnavbar-wrapper">
-                  <SearchBar
-                    products={products}
-                    setProducts={setProducts}
+              </div>
+              <div>
+                <Routes>
+                  <Route
+                    path="/"
+                    element={
+                      <Home
+                        products={products}
+                        setProducts={setProducts}
+                        shoppingCart={shoppingCart}
+                        handleAddItemToCart={handleAddItemToCart}
+                        handleRemoveItemToCart={handleRemoveItemFromCart}
+                      />
+                    }
                   />
-                </div>
-                <div className="home">
-                  <Routes>
-                    <Route path="/"
-                      element={
-                        <Home
-                          products={products}
-                          setProducts = {setProducts}
-                          shoppingCart={shoppingCart}
-                          handleAddItemToCart={handleAddItemToCart}
-                          handleRemoveItemToCart={handleRemoveItemFromCart}
-                        />
-                      } />
-                    <Route path="/products/:productId"
-                      element={<ProductDetail
+                  <Route
+                    path="/store/:productId"
+                    element={
+                      <ProductDetail
                         handleAddItemToCart={handleAddItemToCart}
                         handleRemoveItemToCart={handleRemoveItemFromCart}
                         shoppingCart={shoppingCart}
                         isFetching={isFetching}
-                        error = {error}
-                      />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </div>
-                <About></About>
-                <Contact></Contact>
+                        setIsFetching={setIsFetching}
+                        error={error}
+                        setError={setError}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/store/purchases"
+                    element={<Orders purchases={purchases} />}
+                  />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
               </div>
+              <About></About>
+              <Contact></Contact>
             </div>
-          </main>
-
-        </BrowserRouter>
-      </div>
-    )
-  }
+          </div>
+        </main>
+      </BrowserRouter>
+    </div>
+  );
+}

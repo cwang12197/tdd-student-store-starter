@@ -3,7 +3,11 @@ import ProductCard from "../ProductCard/ProductCard"
 import ShoppingCart from "../ShoppingCart/ShoppingCart"
 import "./ProductGrid.css"
 
-export default function ProductGrid({ products, shoppingCart, handleAddItemToCart = "", handleRemoveItemToCart = "" }) {
+export default function ProductGrid({ products,
+    setProducts,
+    shoppingCart,
+    handleAddItemToCart = "",
+    handleRemoveItemToCart = "" }) {
     if (products == 0) {
         return <h3> No Products Found!</h3>
     }
@@ -17,6 +21,7 @@ export default function ProductGrid({ products, shoppingCart, handleAddItemToCar
                             return <ProductCard
                                 product={item}
                                 key={'item-' + item.id}
+                                setProducts = {setProducts}
                                 productId={item.id}
                                 shoppingCart={shoppingCart}
                                 handleAddItemToCart={handleAddItemToCart}
