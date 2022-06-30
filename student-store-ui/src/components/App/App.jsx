@@ -46,13 +46,12 @@ export default function App() {
         console.log(error);
         return <NotFound />;
       });
-
+  }, [category, searchTerm]);
+  React.useEffect(() => {
     axios.get(PURCHASE_URL).then((response) => {
       setPurchases(response.data.purchases);
-      console.log("responses", response.data.purchases);
-      console.log(purchases);
     });
-  }, [category, searchTerm]);
+  }, []);
 
   const handleSearchChange = (event) => {
     event.preventDefault();
