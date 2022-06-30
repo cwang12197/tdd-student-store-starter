@@ -48,3 +48,14 @@ button {
     display:flex;
     justify-content: center;
 }
+
+.purchase-button {
+    font-family: Dancing Script;
+    background-color: #f5ebe0;
+}
+.purchase-button:hover {
+    cursor: pointer;
+    border-radius: 60px;
+    padding-left: 2px;
+    padding-right: 2px;
+}

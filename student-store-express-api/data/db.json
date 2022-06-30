@@ -163,6 +163,15 @@
       "tax": "5.25",
       "total": "65.22",
       "createdAt": "2022-06-30T15:40:14.863Z"
+    },
+    {
+      "id": 3,
+      "name": "testing",
+      "email": "testing@gmail.com",
+      "subtotal": 17.990000000000002,
+      "tax": "1.57",
+      "total": "19.56",
+      "createdAt": "2022-06-30T15:53:24.694Z"
     }
   ]
 }
