@@ -8,8 +8,6 @@ import axios from "axios";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProductDetail from "../ProductDetail/ProductDetail";
 import NotFound from "../NotFound/NotFound";
-import Hero from "../Hero/Hero";
-import SearchBar from "../SearchBar/SearchBar";
 import About from "../About/About";
 import Contact from "../Contact/Contact";
 import Orders from "../Orders/Orders";
@@ -24,7 +22,7 @@ export default function App() {
   const [checkoutMessage, setCheckoutMessage] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("All Categories");
-  const [purchases, setPurchases] = useState();
+  const [purchases, setPurchases] = useState([]);
 
   const URL = "http://localhost:3001/store";
   const PURCHASE_URL = "http://localhost:3001/store/purchases";
@@ -48,12 +46,11 @@ export default function App() {
         console.log(error);
         return <NotFound />;
       });
+
     axios.get(PURCHASE_URL).then((response) => {
-      if (response.data.purchases != null) {
-        setPurchases(response.data);
-        console.log("responses", response);
-        console.log(purchases);
-      }
+      setPurchases(response.data.purchases);
+      console.log("responses", response.data.purchases);
+      console.log(purchases);
     });
   }, [category, searchTerm]);
 
@@ -145,16 +142,6 @@ export default function App() {
               <div className="nav-wrapper">
                 <Navbar />
               </div>
-              <Hero />
-              <div className="subnavbar-wrapper">
-                <SearchBar
-                  products={products}
-                  setProducts={setProducts}
-                  searchTerm={searchTerm}
-                  handleSearchChange={handleSearchChange}
-                  setCategory={setCategory}
-                />
-              </div>
               <div>
                 <Routes>
                   <Route
@@ -166,6 +153,9 @@ export default function App() {
                         shoppingCart={shoppingCart}
                         handleAddItemToCart={handleAddItemToCart}
                         handleRemoveItemToCart={handleRemoveItemFromCart}
+                        searchTerm={searchTerm}
+                        handleSearchChange={handleSearchChange}
+                        setCategory={setCategory}
                       />
                     }
                   />
